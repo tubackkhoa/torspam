@@ -43,7 +43,7 @@ def main():
 
                 # Getting data from the server
                 print(
-                    '{}[*]{} Getting data({}kb) from {}...'.format(color.ORANGE, color.END, target, int(len(ret)/1024)))
+                    '{}[*]{} Getting data({} - {}kb) from {}...'.format(color.ORANGE, color.END,  ret[0:100], int(len(ret)/1024)), target)
 
                 # Putting data (omitted, maybe it makes detection easier)
                 # random_bytes = random._urandom(1490)
