@@ -54,9 +54,9 @@ def main():
 
     except KeyboardInterrupt:
         pass
-    except Exception:
+    except Exception as err:
         print('\n{}[!]{} An error has occurred:'.format(color.RED, color.END))
-        print('{}{}{}'.format(color.RED, Exception, color.END))
+        print('{}{}{}'.format(color.RED, err, color.END))
 
     finally:
         end_time = datetime.datetime.now().time().strftime('%H:%M:%S')
