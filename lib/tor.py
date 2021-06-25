@@ -35,7 +35,7 @@ class Tor:
             return False
 
     def restart_tor(self):
-        cmd = 'brew services start tor' if sys.platform == 'darwin' else 'service tor start'
+        cmd = 'brew services restart tor' if sys.platform == 'darwin' else 'service tor restart'
         p = Popen(cmd,
                   shell=True, stdout=PIPE, stderr=PIPE)
         p.wait()
