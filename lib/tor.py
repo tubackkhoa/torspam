@@ -7,7 +7,7 @@ import time
 import requests
 from random import choice
 from subprocess import Popen, PIPE
-
+import sys
 from .color import color
 
 
@@ -26,7 +26,8 @@ class Tor:
             return False
 
     def tor_started(self):
-        p = Popen('service tor status', shell=True, stdout=PIPE, stderr=PIPE)
+        cmd = 'brew info tor' if sys.platform == 'darwin' else 'service tor status'
+        p = Popen(cmd, shell=True, stdout=PIPE, stderr=PIPE)
         code = p.wait()
         if code == 0:
             return True
@@ -34,12 +35,14 @@ class Tor:
             return False
 
     def restart_tor(self):
-        p = Popen('brew services start tor',
+        cmd = 'brew services start tor' if sys.platform == 'darwin' else 'service tor start'
+        p = Popen(cmd,
                   shell=True, stdout=PIPE, stderr=PIPE)
         p.wait()
 
     def stop_tor(self):
-        p = Popen('brew services stop tor',
+        cmd = 'brew services stop tor' if sys.platform == 'darwin' else 'service tor stop'
+        p = Popen(cmd,
                   shell=True, stdout=PIPE, stderr=PIPE)
         p.wait()
 
