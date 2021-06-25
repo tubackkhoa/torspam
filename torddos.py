@@ -37,13 +37,13 @@ def main():
                                                         color.END, color.PURPLE, target, color.END))
 
                 if not data:
-                    ret = session.get(target).content[0:100]
+                    ret = session.get(target).content
                 else:
-                    ret = session.post(target, data).content[0:100]
+                    ret = session.post(target, data).content
 
                 # Getting data from the server
                 print(
-                    '{}[*]{} Getting data from {}...{}'.format(color.ORANGE, color.END, target, ret))
+                    '{}[*]{} Getting data({}kb) from {}...'.format(color.ORANGE, color.END, target, int(len(ret)/1024)))
 
                 # Putting data (omitted, maybe it makes detection easier)
                 # random_bytes = random._urandom(1490)
