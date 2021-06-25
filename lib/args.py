@@ -6,10 +6,17 @@
 import argparse
 
 
-parser = argparse.ArgumentParser(description='Order your own DDos Atack through Tor Network.')
+parser = argparse.ArgumentParser(
+    description='Order your own DDos Atack through Tor Network.')
 
 parser.add_argument('-t', '--target', action="store", metavar='', type=str, dest='target',
                     help='server to kick-out', default=False)
+
+parser.add_argument('-H', '--header', action="append", metavar='', type=str, dest='headers',
+                    help='Header', default=[])
+
+parser.add_argument('-D', '--data', action="store", metavar='', type=str, dest='data',
+                    help='Post data', default="")
 
 parser.add_argument('-n', '--attempts', action="store", metavar='', type=int, dest='max_attempts',
                     default=5, help='number of attempts of attack (default: 5)')

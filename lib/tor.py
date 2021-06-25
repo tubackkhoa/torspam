@@ -8,7 +8,7 @@ import requests
 from random import choice
 from subprocess import Popen, PIPE
 
-from color import color
+from .color import color
 
 
 class Tor:
@@ -20,21 +20,27 @@ class Tor:
     def tor_installed(self):
         p = Popen('which tor', shell=True, stdout=PIPE, stderr=PIPE)
         code = p.wait()
-        if code == 0: return True
-        else: return False
+        if code == 0:
+            return True
+        else:
+            return False
 
     def tor_started(self):
         p = Popen('service tor status', shell=True, stdout=PIPE, stderr=PIPE)
         code = p.wait()
-        if code == 0: return True
-        else: return False
+        if code == 0:
+            return True
+        else:
+            return False
 
     def restart_tor(self):
-        p = Popen('service tor restart', shell=True, stdout=PIPE, stderr=PIPE)
+        p = Popen('brew services start tor',
+                  shell=True, stdout=PIPE, stderr=PIPE)
         p.wait()
 
     def stop_tor(self):
-        p = Popen('service tor stop', shell=True, stdout=PIPE, stderr=PIPE)
+        p = Popen('brew services stop tor',
+                  shell=True, stdout=PIPE, stderr=PIPE)
         p.wait()
 
     def get_tor_session(self):
@@ -140,11 +146,14 @@ class Tor:
             self.restart_tor()
             time.sleep(1)
             session = self.get_tor_session()
-            try: current_proxy = session.get('http://ip.42.pl/raw').text
-            except: current_proxy = session.get('http://ifconfig.me/ip').text
+            try:
+                current_proxy = session.get('http://ip.42.pl/raw').text
+            except:
+                current_proxy = session.get('http://ifconfig.me/ip').text
             # Take a fresh proxy
             if current_proxy not in self.used_proxies:
-                print u'\n{}[!]{} New proxy: {}{}{}'.format(color.BLUE, color.END, color.GREEN, current_proxy, color.END)
+                print('\n{}[!]{} New proxy: {}{}{}'.format(
+                    color.BLUE, color.END, color.GREEN, current_proxy, color.END))
                 self.used_proxies.append(current_proxy)
                 break
         return session
