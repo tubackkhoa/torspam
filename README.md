@@ -30,7 +30,7 @@ TorDDos is a Python tool to automatize DDos attacks to a website from the Tor ne
 ## Requirements
 
 - Linux system
-- Python 2.7
+- Python 2.7 | 3.x
 - Tor service
 - requests
 

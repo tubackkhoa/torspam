@@ -29,7 +29,7 @@ def main():
                 session = tor.new_session()
                 for header in headers:
                     key, value = header.split(sep=":", maxsplit=2)
-                    session.headers[key] = value
+                    session.headers[key.strip()] = value.strip()
 
                 print('{}[!]{} New Tor session initialized...'.format(
                     color.BLUE, color.END))
